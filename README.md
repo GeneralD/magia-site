@@ -4,7 +4,7 @@
 
 [**Magia**](https://github.com/GeneralD/Magia)（究極のカスタマイズ性と処理速度を誇る、プロのための NFT ジェネレーター）の公式ランディングページです。
 
-🔗 **Live:** _デプロイ後に更新_
+🔗 **Live:** <https://magia-site.yumejustice.workers.dev>
 
 ---
 
