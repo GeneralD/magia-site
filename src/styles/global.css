@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Magia — design tokens (ui-ux-pro-max: Dark Mode OLED + web3)
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-night: #0a0e1a;
+  --color-deep: #0c1222;
+  --color-surface: #10182b;
+  --color-surface-2: #16203a;
+  --color-line: rgba(148, 163, 184, 0.14);
+  --color-line-strong: rgba(148, 163, 184, 0.28);
+  --color-ink: #f8fafc;
+  --color-muted: #9fb0c9;
+  --color-faint: #6b7a96;
+
+  --color-brand: #a855f7;   /* violet  */
+  --color-brand-2: #e879f9; /* fuchsia */
+  --color-cyan: #22d3ee;    /* cyan    */
+  --color-run: #22c55e;     /* CLI run green */
+  --color-run-2: #4ade80;
+
+  --font-display: "Orbitron", "Exo 2", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Exo 2", "Noto Sans JP", ui-sans-serif, system-ui, -apple-system,
+    "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-night);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-night);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-brand) 45%, transparent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* ── Effect utilities ─────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(110deg, var(--color-brand) 0%, var(--color-brand-2) 45%, var(--color-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-glow {
+  text-shadow: 0 0 24px color-mix(in srgb, var(--color-brand) 55%, transparent);
+}
+
+.run-glow {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-run) 40%, transparent),
+    0 10px 30px -10px color-mix(in srgb, var(--color-run) 60%, transparent);
+}
+
+.brand-glow {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand) 35%, transparent),
+    0 18px 50px -18px color-mix(in srgb, var(--color-brand) 70%, transparent);
+}
+
+/* Faint grid backdrop for the hero / sections */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 78%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 78%);
+}
+
+/* Aurora blobs */
+.aurora {
+  filter: blur(72px);
+  opacity: 0.5;
+}
+
+.card {
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-deep) 100%);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+}
+
+.card-hover {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-line-strong);
+  box-shadow: 0 24px 60px -28px color-mix(in srgb, var(--color-brand) 60%, transparent);
+}
+
+/* ── Hero layer-stack illustration (Magia core: layer compositing) ── */
+.layerstack { perspective: 1100px; }
+.layerstack .layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-line-strong);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-surface) 92%, transparent), var(--color-deep));
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+  transform: rotateX(52deg) rotateZ(-42deg) translateZ(var(--z, 0));
+  transform-style: preserve-3d;
+  animation: floaty 6s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes floaty {
+  0%, 100% { transform: rotateX(52deg) rotateZ(-42deg) translateZ(var(--z, 0)); }
+  50%      { transform: rotateX(52deg) rotateZ(-42deg) translateZ(calc(var(--z, 0) + 14px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layerstack .layer { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Marquee for the showcase strip (CSS-only) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 26s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }

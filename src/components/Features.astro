@@ -1,0 +1,105 @@
+---
+const features = [
+  {
+    span: "lg:col-span-2",
+    accent: true,
+    title: "無数のレイヤーを合成",
+    body:
+      "レイヤーは何枚でも。各レイヤーはアニメーションにも対応し、静止画から動く NFT まで思いのままに重ねられます。",
+    icon: "layers",
+  },
+  {
+    span: "lg:col-span-1",
+    title: "確率を、緻密に制御",
+    body: "パーツごとの当選率・抽選順序・重ね順を個別に設定。レアリティ設計が自在。",
+    icon: "percent",
+  },
+  {
+    span: "lg:col-span-1",
+    title: "組み合わせをルール化",
+    body: "レイヤーを跨いだパーツの可否をルール化し、特定トークン ID に制約も追加。",
+    icon: "shuffle",
+  },
+  {
+    span: "lg:col-span-2",
+    title: "OpenSea Metadata 準拠",
+    body:
+      "使用パーツごとに Trait を付与し、順序も指定。OpenSea の Metadata Standard に準拠したメタデータをそのまま出力します。",
+    icon: "braces",
+  },
+  {
+    span: "lg:col-span-1",
+    title: "GIF / PNG 出力",
+    body: "テスト用ウォーターマークや、任意フォントでのトークン ID 印字にも対応。",
+    icon: "image",
+  },
+  {
+    span: "lg:col-span-2",
+    title: "先読み防止 & アセット掃除",
+    body:
+      "URI が連番になりがちなときの先読み対策を提供。読み込むアセット内の重複・不要ファイルも掃除します。",
+    icon: "shield",
+  },
+];
+
+const icons: Record<string, string> = {
+  layers:
+    "M12 2 2 7l10 5 10-5-10-5Z|M2 17l10 5 10-5|M2 12l10 5 10-5",
+  percent: "M19 5 5 19|M6.5 6.5h.01|M17.5 17.5h.01",
+  shuffle:
+    "M16 3h5v5|M4 20 21 3|M21 16v5h-5|M15 15l6 6|M4 4l5 5",
+  braces:
+    "M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1|M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1",
+  image:
+    "M3 3h18v18H3z|M8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z|M21 15l-5-5L5 21",
+  shield: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z|M9 12l2 2 4-4",
+};
+---
+
+<section id="features" class="relative py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="max-w-2xl">
+      <span class="font-mono text-sm text-run">// features</span>
+      <h2 class="mt-3 text-3xl font-bold sm:text-4xl">プロの要求に応える、生成エンジン</h2>
+      <p class="mt-4 text-muted">
+        単なる画像の量産ではなく、コレクション設計そのものをコードで制御する。
+        Magia がカバーする主な機能です。
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map((f) => (
+          <article
+            class={`card card-hover ${f.span} p-6 ${f.accent ? "brand-glow" : ""}`}
+          >
+            <div
+              class={`mb-4 grid h-11 w-11 place-items-center rounded-xl border ${
+                f.accent
+                  ? "border-brand/40 bg-brand/10 text-brand-2"
+                  : "border-line bg-surface text-cyan"
+              }`}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                {icons[f.icon].split("|").map((d) => (
+                  <path d={d} />
+                ))}
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold">{f.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{f.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

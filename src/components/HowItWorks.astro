@@ -1,0 +1,47 @@
+---
+const steps = [
+  {
+    no: "01",
+    title: "アセットを配置",
+    body: "レイヤーごとにフォルダを分け、パーツ画像を並べるだけ。基本レイヤーの確保枠も指定できます。",
+  },
+  {
+    no: "02",
+    title: "ルールを記述",
+    body: "当選率・抽選順序・重ね順、レイヤー横断の組み合わせ可否、トークン ID 制約を設定で定義。",
+  },
+  {
+    no: "03",
+    title: "magia を実行",
+    body: "コマンド一発で画像と OpenSea 準拠メタデータを一括生成。GIF / PNG どちらでも出力できます。",
+  },
+];
+---
+
+<section id="how" class="relative py-20 sm:py-28">
+  <div class="aurora pointer-events-none absolute left-1/2 top-1/2 h-64 w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5">
+    <div class="max-w-2xl">
+      <span class="font-mono text-sm text-cyan">// how it works</span>
+      <h2 class="mt-3 text-3xl font-bold sm:text-4xl">3 ステップで、コレクションを召喚</h2>
+    </div>
+
+    <ol class="mt-12 grid gap-5 md:grid-cols-3">
+      {
+        steps.map((s, i) => (
+          <li class="card relative p-7">
+            <div class="flex items-center gap-3">
+              <span class="font-display text-3xl font-extrabold text-gradient">{s.no}</span>
+              {i < steps.length - 1 && (
+                <span class="hidden flex-1 border-t border-dashed border-line-strong md:block" />
+              )}
+            </div>
+            <h3 class="mt-5 text-lg font-semibold">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

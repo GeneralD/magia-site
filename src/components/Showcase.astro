@@ -1,0 +1,78 @@
+---
+const collections = [
+  {
+    name: "FOS — Ancient Alpha",
+    releaser: "THE LEGAL",
+    period: "2023.03",
+    supply: "50（初回）",
+    url: "https://opensea.io/collection/fos-ancient-alpha",
+    art: "from-brand via-brand-2 to-cyan",
+  },
+  {
+    name: "ANIM.JP",
+    releaser: "ANIM.JP（DAO）",
+    period: "2022.07",
+    supply: "10,000",
+    url: "https://opensea.io/collection/anim-jp",
+    art: "from-cyan via-brand to-brand-2",
+  },
+];
+---
+
+<section id="showcase" class="relative py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <span class="font-mono text-sm text-brand-2">// proof</span>
+        <h2 class="mt-3 text-3xl font-bold sm:text-4xl">召喚された、実在のコレクション</h2>
+        <p class="mt-4 text-muted">
+          Magia で生成された NFT プロジェクトたち。設計の自由度と量産性は、実戦で証明済みです。
+        </p>
+      </div>
+      <div class="rounded-2xl border border-line bg-surface/50 px-6 py-4 text-center">
+        <div class="font-display text-3xl font-extrabold text-gradient">10,000</div>
+        <div class="mt-1 text-xs text-muted">体を 1 コマンドで生成</div>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {
+        collections.map((c) => (
+          <a
+            href={c.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card card-hover group block overflow-hidden"
+          >
+            <div class={`relative h-44 bg-gradient-to-br ${c.art}`}>
+              <div class="absolute inset-0 grid-bg opacity-30" />
+              <div class="absolute inset-0 bg-night/10" />
+              <span class="absolute bottom-3 right-3 rounded-full bg-night/70 px-3 py-1 font-mono text-xs text-ink backdrop-blur">
+                {c.supply}
+              </span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold">{c.name}</h3>
+              <dl class="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted">
+                <div class="flex gap-2">
+                  <dt class="text-faint">リリース元</dt>
+                  <dd>{c.releaser}</dd>
+                </div>
+                <div class="flex gap-2">
+                  <dt class="text-faint">時期</dt>
+                  <dd>{c.period}</dd>
+                </div>
+              </dl>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan transition-transform group-hover:translate-x-0.5">
+                OpenSea で見る
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7" /><path d="M7 7h10v10" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
